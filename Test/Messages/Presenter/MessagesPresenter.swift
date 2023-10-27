@@ -1,10 +1,3 @@
-//
-//  ChatsViewModel.swift
-//  Test
-//
-//  Created by Kseniya Zharikova on 25/10/23.
-//
-
 import Foundation
 
 protocol MessagesViewDelegate: NSObjectProtocol {
