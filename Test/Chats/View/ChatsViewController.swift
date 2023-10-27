@@ -10,19 +10,21 @@ import UIKit
 class MessagesViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    
     var pages: [Page] = []
     let pageSize = 20
     var loading = false
     var currentPage = 0
     var previousPage = 0
     var nextPage = 0
-    
+    var currentSection = 1
+
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Messages"
         view.backgroundColor = .systemGray6
         configureItems()
-        loadPage(pageNumber: currentPage)
+        loadNext(pageNumber: currentPage)
         configureChatListView()
     }
     
@@ -31,7 +33,7 @@ class MessagesViewController: UIViewController {
             title: "Jump to",
             style: .plain,
             target: self,
-            action: #selector(jump1000)
+            action: #selector(jump)
         )
         navigationItem.leftBarButtonItem = UIBarButtonItem(
             title: "Page \(currentPage)",
@@ -56,18 +58,14 @@ class MessagesViewController: UIViewController {
             height: 44
         )
         collectionView.collectionViewLayout = layout
-       
     }
     
-    @objc private func jump1000() {
+    @objc private func jump() {
         let page = 1000 / pageSize
-        pages.removeAll()
-        loadPage(pageNumber: page)
-        let indexPath = IndexPath(item: 0, section: 0)
-        collectionView.scrollToItem(at: indexPath, at: .centeredVertically, animated: true)
+        jumpToPage(pageNumber: page)
     }
     
-    func loadPage(pageNumber: Int) {
+    private func jumpToPage(pageNumber: Int) {
         guard !loading else {
             return
         }
@@ -77,28 +75,73 @@ class MessagesViewController: UIViewController {
         currentPage = pageNumber
         nextPage = pageNumber + 1
         
-        let pageData = mock()
         let previousPageData = mock()
+        let pageData = mock()
         let nextPageData = mock()
-
-        let page = Page(pageNumber: pageNumber, items: pageData)
+        
         let previous = Page(pageNumber: previousPage, items: previousPageData)
+        let page = Page(pageNumber: currentPage, items: pageData)
         let next = Page(pageNumber: nextPage, items: nextPageData)
         
-        print("page:  currentPage\(currentPage)")
-        print("page:  previousPage\(previousPage)")
-        print("page:  nextPage\(nextPage)")
+        pages.removeAll()
+        pages.append(contentsOf: [previous, page, next])
+        collectionView.reloadData()
         
-        if currentPage != previousPage {
-            pages.append(contentsOf: [page, next])
-        } else {
-            pages.removeAll { $0.pageNumber == pageNumber }
-            pages.append(contentsOf: [previous, page, next])
+        if let currentSectionFrame = collectionView.layoutAttributesForItem(at: IndexPath(item: 0, section: currentSection))?.frame {
+            let currentSectionOffset = currentSectionFrame.origin.y
+            collectionView.setContentOffset(CGPoint(x: 0, y: currentSectionOffset), animated: false)
         }
-        print("page:  pages.count \(pages.count)")
-        for page in pages {
-            print("page: \(page.pageNumber)")
+        
+        let indexPath = IndexPath(item: 0, section: 1)
+        collectionView.scrollToItem(at: indexPath, at: .centeredVertically, animated: true)
+        
+        self.loading = false
+    }
+    
+    func loadPrevious(pageNumber: Int) {
+        guard !loading else {
+            return
         }
+        loading = true
+        previousPage = pageNumber - 1
+        currentPage = pageNumber
+        
+        let previousPageData = mock()
+        let pageData = mock()
+        
+        let previous = Page(pageNumber: previousPage, items: previousPageData)
+        let page = Page(pageNumber: pageNumber, items: pageData)
+        
+        pages.removeAll { $0.pageNumber == pageNumber }
+        pages.insert(contentsOf: [page, previous], at: 0)
+        collectionView.reloadData()
+    
+        if let currentSectionFrame = collectionView.layoutAttributesForItem(at: IndexPath(item: 0, section: currentSection))?.frame {
+            let currentSectionOffset = currentSectionFrame.origin.y
+            collectionView.setContentOffset(CGPoint(x: 0, y: currentSectionOffset), animated: false)
+        }
+       
+        self.loading = false
+    }
+    
+    func loadNext(pageNumber: Int) {
+        guard !loading else {
+            return
+        }
+        loading = true
+        currentPage = pageNumber
+        nextPage = pageNumber + 1
+        
+     //   print("page:  currentPage \(currentPage)")
+        
+        let pageData = mock()
+        let nextPageData = mock()
+        let page = Page(pageNumber: pageNumber, items: pageData)
+        let next = Page(pageNumber: nextPage, items: nextPageData)
+        
+        pages.removeAll { $0.pageNumber == pageNumber }
+        pages.append(contentsOf: [page, next])
+        
         collectionView.reloadData()
         self.loading = false
     }
@@ -132,12 +175,13 @@ extension MessagesViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        print("page:  currentPage \(currentPage)")
         if scrollView.contentOffset.y < 0 && !loading  && currentPage != 0 {
             currentPage -= 1
-            loadPage(pageNumber: currentPage)
+            loadPrevious(pageNumber: currentPage)
         } else if scrollView.contentOffset.y > (scrollView.contentSize.height - scrollView.frame.size.height) && !loading {
             currentPage += 1
-            loadPage(pageNumber: currentPage)
+            loadNext(pageNumber: currentPage)
         }
     }
 }
@@ -169,5 +213,3 @@ extension MessagesViewController {
         ]
     }
 }
-
-

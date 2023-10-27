@@ -109,12 +109,20 @@
 		18114B742AE9655400BC78C9 /* Chats */ = {
 			isa = PBXGroup;
 			children = (
+				18114B7A2AEBE27B00BC78C9 /* View */,
 				18114B642AE9545900BC78C9 /* Cell */,
 				18114B632AE9542900BC78C9 /* Model */,
 				18114B722AE9654C00BC78C9 /* ChatsViewModel.swift */,
-				18114B512AE94FE400BC78C9 /* ChatsViewController.swift */,
 			);
 			path = Chats;
+			sourceTree = "<group>";
+		};
+		18114B7A2AEBE27B00BC78C9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18114B512AE94FE400BC78C9 /* ChatsViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
