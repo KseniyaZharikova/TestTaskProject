@@ -1,10 +1,3 @@
-//
-//  MessageCell.swift
-//  Test
-//
-//  Created by Kseniya Zharikova on 25/10/23.
-//
-
 import UIKit
 
 class MessageCell: UICollectionViewCell {
@@ -12,7 +5,6 @@ class MessageCell: UICollectionViewCell {
     @IBOutlet weak var massageNumber: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
 
-    
     override func systemLayoutSizeFitting(
            _ targetSize: CGSize,
            withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority,
