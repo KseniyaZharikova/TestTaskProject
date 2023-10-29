@@ -43,7 +43,9 @@ class MessagesViewController: UIViewController {
         let jumpAction = UIAction(
             title: "Jump to 1000"
         ) { _ in
-            // User can jump to any "messageNumber" of message
+///           User can jump to any "messageNumber" of message
+//            let messageNumber = self.getRandomNumber()
+//            print("messageNumber: \(messageNumber)")
             self.presenter.jumpToMessage(messageNumber: 1000)
         }
         return UIMenu(
@@ -77,6 +79,10 @@ class MessagesViewController: UIViewController {
             leftBarButtonItem.title = "Page \(presenter.pages[indexPath.section].pageNumber)"
             presenter.currentPage = presenter.pages[indexPath.section].pageNumber
         }
+    }
+    
+    private func getRandomNumber() -> Int {
+        return Int.random(in: 0..<1000000)
     }
 }
 
