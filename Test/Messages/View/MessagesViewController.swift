@@ -30,16 +30,13 @@ class MessagesViewController: UIViewController {
     }
     private func getRowSize(message: String) -> CGSize {
         let font = UIFont.systemFont(ofSize: 17, weight: .regular)
-        let horozontalOffset: CGFloat = 16
+        let horozontalOffset: CGFloat = 32
         let titleLabelHeight: CGFloat = 21
         let titleLabelVerticalOffset: CGFloat = 16
         let messageLabelVerticalOffset: CGFloat = 16
         let width: CGFloat = collectionView.bounds.width - horozontalOffset
-        let height = message.height(width: width, font: font)
-        return CGSize(
-            width: width,
-            height: height + titleLabelHeight + titleLabelVerticalOffset + messageLabelVerticalOffset
-        )
+        let height = message.height(width: width, font: font) + titleLabelHeight + titleLabelVerticalOffset + messageLabelVerticalOffset
+        return CGSize(width: width, height: height)
     }
     
     func makeMenu() -> UIMenu {
@@ -65,6 +62,10 @@ class MessagesViewController: UIViewController {
         )
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
+        layout.estimatedItemSize = CGSize(
+            width: collectionView.bounds.width,
+            height: 44
+        )
         collectionView.collectionViewLayout = layout
     }
     
@@ -102,11 +103,13 @@ extension MessagesViewController: UICollectionViewDelegate, UICollectionViewData
         updatePageNumberLabel(indexPath: indexPath)
         return cell
     }
+    // After adding this method, ScrollToItem() does not work correctly.
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let item = presenter.pages[indexPath.section].items[indexPath.row]
-        return getRowSize(message: item.text)
-    }
+    //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    //        let item = presenter.pages[indexPath.section].items[indexPath.row]
+    //        return getRowSize(message: item.text)
+    //    }
+    //
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y < 0 && !presenter.isLoading && presenter.currentPage != 0 {
