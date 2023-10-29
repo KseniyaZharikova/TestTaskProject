@@ -77,7 +77,6 @@ class MessagesViewController: UIViewController {
     private func updatePageNumberLabel(indexPath: IndexPath) {
         if let leftBarButtonItem = navigationItem.leftBarButtonItem {
             leftBarButtonItem.title = "Page \(presenter.pages[indexPath.section].pageNumber)"
-            presenter.currentPage = presenter.pages[indexPath.section].pageNumber
         }
     }
     

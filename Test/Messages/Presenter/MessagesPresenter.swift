@@ -33,8 +33,8 @@ class MessagesPresenter {
             return
         }
         
-        self.messageNumber = messageNumber
         isLoading = true
+        self.messageNumber = messageNumber
         let pageNumber = messageNumber / pageSize
         previousPage = pageNumber - 1
         currentPage = pageNumber
@@ -43,16 +43,14 @@ class MessagesPresenter {
         let previousPageData = service.getMockMessages()
         let pageData = service.getMockMessages()
         let nextPageData = service.getMockMessages()
-        
         let previous = Page(pageNumber: previousPage, items: previousPageData)
         let page = Page(pageNumber: currentPage, items: pageData)
         let next = Page(pageNumber: nextPage, items: nextPageData)
         
         pages.removeAll()
         pages.append(contentsOf: [previous, page, next])
-        
         viewDelegate?.updateMessageListAfterJump()
-        self.isLoading = false
+        isLoading = false
     }
     
     func loadPreviousMessages() {
@@ -60,20 +58,18 @@ class MessagesPresenter {
             return
         }
         
-        currentPage -= 1
         isLoading = true
+        currentPage -= 1
         previousPage = currentPage - 1
         
         let previousPageData = service.getMockMessages()
         let pageData = service.getMockMessages()
-        
         let previous = Page(pageNumber: previousPage, items: previousPageData)
         let page = Page(pageNumber: currentPage, items: pageData)
         
-        pages.removeAll { $0.pageNumber == currentPage }
-        pages.insert(contentsOf: [page, previous], at: 0)
+        pages.insert(contentsOf: [previous, page], at: 0)
         viewDelegate?.updateMessageList()
-        self.isLoading = false
+        isLoading = false
     }
     
     func loadNextMessages() {
@@ -89,10 +85,9 @@ class MessagesPresenter {
         let page = Page(pageNumber: currentPage, items: pageData)
         let next = Page(pageNumber: nextPage, items: nextPageData)
         
-        pages.removeAll { $0.pageNumber == currentPage }
         pages.append(contentsOf: [page, next])
         viewDelegate?.reloadMessageList()
-        self.isLoading = false
+        isLoading = false
     }
     
     func loadFirstMessages() {
@@ -107,9 +102,8 @@ class MessagesPresenter {
         let page = Page(pageNumber: currentPage, items: pageData)
         let next = Page(pageNumber: nextPage, items: nextPageData)
         
-        pages.removeAll { $0.pageNumber == currentPage }
         pages.append(contentsOf: [page, next])
         viewDelegate?.reloadMessageList()
-        self.isLoading = false
+        isLoading = false
     }
 }
