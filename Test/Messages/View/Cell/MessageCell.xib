@@ -17,13 +17,13 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Message:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KUE-eF-Bln">
-                        <rect key="frame" x="16" y="8" width="281" height="21"/>
+                        <rect key="frame" x="0.0" y="8" width="313" height="21"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text of message" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UoJ-IW-cfH">
-                        <rect key="frame" x="16" y="37" width="281" height="106"/>
+                        <rect key="frame" x="0.0" y="37" width="313" height="106"/>
                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -34,11 +34,11 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="UoJ-IW-cfH" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="3JE-v0-x8a"/>
-                <constraint firstItem="KUE-eF-Bln" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="N0s-Bb-sCE"/>
+                <constraint firstItem="UoJ-IW-cfH" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="3JE-v0-x8a"/>
+                <constraint firstItem="KUE-eF-Bln" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="N0s-Bb-sCE"/>
                 <constraint firstAttribute="bottom" secondItem="UoJ-IW-cfH" secondAttribute="bottom" constant="8" id="doZ-lZ-YlX"/>
-                <constraint firstAttribute="trailing" secondItem="KUE-eF-Bln" secondAttribute="trailing" constant="16" id="dsT-E3-DkZ"/>
-                <constraint firstAttribute="trailing" secondItem="UoJ-IW-cfH" secondAttribute="trailing" constant="16" id="nLT-N9-4xm"/>
+                <constraint firstAttribute="trailing" secondItem="KUE-eF-Bln" secondAttribute="trailing" id="dsT-E3-DkZ"/>
+                <constraint firstAttribute="trailing" secondItem="UoJ-IW-cfH" secondAttribute="trailing" id="nLT-N9-4xm"/>
                 <constraint firstItem="KUE-eF-Bln" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="nlq-ql-QoD"/>
                 <constraint firstItem="UoJ-IW-cfH" firstAttribute="top" secondItem="KUE-eF-Bln" secondAttribute="bottom" constant="8" id="zhB-JS-U6S"/>
             </constraints>

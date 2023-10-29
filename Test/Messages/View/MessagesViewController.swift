@@ -43,6 +43,7 @@ class MessagesViewController: UIViewController {
         let jumpAction = UIAction(
             title: "Jump to 1000"
         ) { _ in
+            // User can jump to any "messageNumber" of message
             self.presenter.jumpToMessage(messageNumber: 1000)
         }
         return UIMenu(
@@ -55,17 +56,12 @@ class MessagesViewController: UIViewController {
     private func configureCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.isPagingEnabled = true
         collectionView.register(
             UINib(nibName: "MessageCell", bundle: nil),
             forCellWithReuseIdentifier: "MessageCell"
         )
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.estimatedItemSize = CGSize(
-            width: collectionView.bounds.width,
-            height: 44
-        )
         collectionView.collectionViewLayout = layout
     }
     
@@ -103,13 +99,11 @@ extension MessagesViewController: UICollectionViewDelegate, UICollectionViewData
         updatePageNumberLabel(indexPath: indexPath)
         return cell
     }
-    // After adding this method, ScrollToItem() does not work correctly.
     
-    //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    //        let item = presenter.pages[indexPath.section].items[indexPath.row]
-    //        return getRowSize(message: item.text)
-    //    }
-    //
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let item = presenter.pages[indexPath.section].items[indexPath.row]
+        return getRowSize(message: item.text)
+    }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y < 0 && !presenter.isLoading && presenter.currentPage != 0 {
@@ -134,7 +128,8 @@ extension MessagesViewController: MessagesViewDelegate {
     func updateMessageListAfterJump() {
         collectionView.reloadData()
         setCollectionViewContentOffset()
-        let indexPath = IndexPath(item: 0, section: 1)
+        let item = presenter.messageNumber % presenter.pageSize
+        let indexPath = IndexPath(item: item, section: 1)
         collectionView.scrollToItem(at: indexPath, at: .centeredVertically, animated: true)
     }
 }

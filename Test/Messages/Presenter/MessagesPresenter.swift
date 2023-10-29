@@ -18,6 +18,7 @@ class MessagesPresenter {
     var nextPage = 0
     var currentSection = 1
     var isLoading = false
+    var messageNumber = 0
     
     init(service: MessagesService){
         self.service = service
@@ -32,6 +33,7 @@ class MessagesPresenter {
             return
         }
         
+        self.messageNumber = messageNumber
         isLoading = true
         let pageNumber = messageNumber / pageSize
         previousPage = pageNumber - 1
