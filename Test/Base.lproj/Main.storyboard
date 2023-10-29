@@ -16,11 +16,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Mfy-m1-jcb">
-                                <rect key="frame" x="16" y="103" width="361" height="715"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Mfy-m1-jcb">
+                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="b6A-Bz-3TT">
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="b6A-Bz-3TT">
                                     <size key="itemSize" width="128" height="44"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -31,6 +30,12 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Mfy-m1-jcb" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="3BH-yX-vMZ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Mfy-m1-jcb" secondAttribute="trailing" id="5lv-eg-5R0"/>
+                            <constraint firstItem="Mfy-m1-jcb" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="O49-5R-9af"/>
+                            <constraint firstItem="Mfy-m1-jcb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="xOq-LJ-3FE"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="dan-zj-WwT"/>
                     <connections>
