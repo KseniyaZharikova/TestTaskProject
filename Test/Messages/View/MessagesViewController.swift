@@ -4,6 +4,7 @@ class MessagesViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     private let presenter = MessagesPresenter(service: .init())
+    private var scrollToIndexPath: IndexPath?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,13 +22,8 @@ class MessagesViewController: UIViewController {
             menu: makeMenu()
         )
         navigationItem.rightBarButtonItem =  button
-        navigationItem.leftBarButtonItem = UIBarButtonItem(
-            title: "Page \(presenter.currentPage)",
-            style: .plain,
-            target: self,
-            action: nil
-        )
     }
+    
     private func getRowSize(message: String) -> CGSize {
         let font = UIFont.systemFont(ofSize: 17, weight: .regular)
         let horozontalOffset: CGFloat = 32
@@ -64,6 +60,7 @@ class MessagesViewController: UIViewController {
         )
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
+        collectionView.showsVerticalScrollIndicator = false
         collectionView.collectionViewLayout = layout
     }
     
@@ -101,7 +98,15 @@ extension MessagesViewController: UICollectionViewDelegate, UICollectionViewData
         let pageNumber = presenter.pages[indexPath.section].pageNumber
         let messageNumber = (pageNumber * presenter.pageSize) + indexPath.item
         cell.fill(message: item.text, messageNumber: messageNumber)
-        updatePageNumberLabel(indexPath: indexPath)
+        
+        if let scrollToIndexPath = scrollToIndexPath, indexPath == scrollToIndexPath {
+            cell.alpha = 0.0
+            UIView.animate(withDuration: 0.5) {
+                cell.alpha = 1.0
+                self.scrollToIndexPath = nil
+            }
+        }
+        
         return cell
     }
     
@@ -132,9 +137,9 @@ extension MessagesViewController: MessagesViewDelegate {
     
     func updateMessageListAfterJump() {
         collectionView.reloadData()
-        setCollectionViewContentOffset()
         let item = presenter.messageNumber % presenter.pageSize
         let indexPath = IndexPath(item: item, section: 1)
+        scrollToIndexPath = indexPath
         collectionView.scrollToItem(at: indexPath, at: .centeredVertically, animated: true)
     }
 }
