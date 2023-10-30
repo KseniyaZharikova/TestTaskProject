@@ -16,7 +16,6 @@ class MessagesPresenter {
     var currentPage = 0
     var previousPage = 0
     var nextPage = 0
-    var currentSection = 1
     var isLoading = false
     var messageNumber = 0
     
