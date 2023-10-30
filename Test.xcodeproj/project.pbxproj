@@ -21,6 +21,7 @@
 		18114B7D2AEBE2EC00BC78C9 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18114B7C2AEBE2EC00BC78C9 /* Page.swift */; };
 		18114B842AEBE54D00BC78C9 /* MessagesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18114B832AEBE54D00BC78C9 /* MessagesService.swift */; };
 		18114B872AEE8B2300BC78C9 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18114B862AEE8B2300BC78C9 /* String+Ext.swift */; };
+		1833FE6D2AF01DDB00F91D9F /* MessagesViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1833FE6C2AF01DDB00F91D9F /* MessagesViewDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		18114B7C2AEBE2EC00BC78C9 /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		18114B832AEBE54D00BC78C9 /* MessagesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesService.swift; sourceTree = "<group>"; };
 		18114B862AEE8B2300BC78C9 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
+		1833FE6C2AF01DDB00F91D9F /* MessagesViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 			children = (
 				18114B642AE9545900BC78C9 /* Cell */,
 				18114B512AE94FE400BC78C9 /* MessagesViewController.swift */,
+				1833FE6C2AF01DDB00F91D9F /* MessagesViewDelegate.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 				18114B522AE94FE400BC78C9 /* MessagesViewController.swift in Sources */,
 				18114B4E2AE94FE400BC78C9 /* AppDelegate.swift in Sources */,
 				18114B7D2AEBE2EC00BC78C9 /* Page.swift in Sources */,
+				1833FE6D2AF01DDB00F91D9F /* MessagesViewDelegate.swift in Sources */,
 				18114B502AE94FE400BC78C9 /* SceneDelegate.swift in Sources */,
 				18114B762AE967E300BC78C9 /* AppCoordinator.swift in Sources */,
 				18114B6B2AE954D800BC78C9 /* MessageCell.swift in Sources */,

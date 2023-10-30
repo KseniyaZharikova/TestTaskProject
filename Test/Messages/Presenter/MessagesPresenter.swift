@@ -1,15 +1,9 @@
 import Foundation
 
-protocol MessagesViewDelegate: NSObjectProtocol {
-    func updateMessageListAfterJump()
-    func updateMessageList()
-    func reloadMessageList()
-}
-
 class MessagesPresenter {
     
-    private let service: MessagesService
     weak private var viewDelegate : MessagesViewDelegate?
+    private let service: MessagesService
     
     var pages: [Page] = []
     let pageSize = 20
@@ -75,6 +69,7 @@ class MessagesPresenter {
         guard !isLoading else {
             return
         }
+        
         currentPage += 1
         isLoading = true
         nextPage = currentPage + 1
@@ -93,6 +88,7 @@ class MessagesPresenter {
         guard !isLoading else {
             return
         }
+        
         isLoading = true
         nextPage = currentPage + 1
         

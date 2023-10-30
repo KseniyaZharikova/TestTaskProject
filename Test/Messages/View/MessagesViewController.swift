@@ -3,6 +3,7 @@ import UIKit
 class MessagesViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    
     private let presenter = MessagesPresenter(service: .init())
     private var scrollToIndexPath: IndexPath?
     
@@ -39,9 +40,10 @@ class MessagesViewController: UIViewController {
         let jumpAction = UIAction(
             title: "Jump to 1000"
         ) { _ in
-///           User can jump to any "messageNumber" of message
-//            let messageNumber = self.getRandomNumber()
-//            print("messageNumber: \(messageNumber)")
+            /// User can jump to any "messageNumber" of message
+            // let messageNumber = self.getRandomNumber()
+            // print("messageNumber: \(messageNumber)")
+            // self.presenter.jumpToMessage(messageNumber: messageNumber)
             self.presenter.jumpToMessage(messageNumber: 1000)
         }
         return UIMenu(
@@ -68,12 +70,6 @@ class MessagesViewController: UIViewController {
         if let currentSectionFrame = collectionView.layoutAttributesForItem(at: IndexPath(item: 0, section: 1))?.frame {
             let currentSectionOffset = currentSectionFrame.origin.y
             collectionView.setContentOffset(CGPoint(x: 0, y: currentSectionOffset), animated: false)
-        }
-    }
-    
-    private func updatePageNumberLabel(indexPath: IndexPath) {
-        if let leftBarButtonItem = navigationItem.leftBarButtonItem {
-            leftBarButtonItem.title = "Page \(presenter.pages[indexPath.section].pageNumber)"
         }
     }
     
